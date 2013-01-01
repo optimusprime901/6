@@ -5,16 +5,16 @@ function init(){
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
-	tool = "freeHand";
+	tool = "fillRectangle";
 	mouseDownBoolean = false;
 	drawX = drawY =null;
 
 	strokeStyleColor="black";
 	fillStyleColor="black";
 
-	window.addEventListener('mousedown',mouseDown,false);
-	window.addEventListener('mousemove',mouseMove,false);
-	window.addEventListener('mouseup',mouseUp,false);
+	canvas.addEventListener('touchstart',mouseDown,false);
+	canvas.addEventListener('touchmove',mouseMove,false);
+	canvas.addEventListener('touchend',mouseUp,false);
 	
 	strokeStyle = document.getElementById('strokeStyle');
 	strokeStyle.addEventListener('change',strokeStyleColorChange,false);
@@ -34,11 +34,10 @@ function init(){
 
 
 function mouseUp(e){
-	
-	e.preventDefault();
+e.preventDefault();
 
-	drawX = e.pageX-canvas.offsetLeft;
-	drawY = e.pageY-canvas.offsetTop;
+	drawX = e.targetTouches[0].pageX-canvas.offsetLeft;
+	drawY = e.targetTouches[0].pageY-canvas.offsetTop;
 
 	switch(tool){
 
@@ -58,11 +57,10 @@ function mouseUp(e){
 }
 
 function mouseDown(e){
-
-	e.preventDefault();
+e.preventDefault();
 	
-	drawX = e.pageX-canvas.offsetLeft;
-	drawY = e.pageY-canvas.offsetTop;
+	drawX = e.targetTouches[0].pageX-canvas.offsetLeft;
+	drawY = e.targetTouches[0].pageY-canvas.offsetTop;
 
 	switch(tool){
 
@@ -82,11 +80,10 @@ function mouseDown(e){
 }
 
 function mouseMove(e){
-
-	e.preventDefault();
+e.preventDefault();
 	
-	drawX = e.pageX-canvas.offsetLeft;
-	drawY = e.pageY-canvas.offsetTop;
+	drawX = e.targetTouches[0].pageX-canvas.offsetLeft;
+	drawY = e.targetTouches[0].pageY-canvas.offsetTop;
 
 	switch(tool){
 
